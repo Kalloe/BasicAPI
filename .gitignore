@@ -27,6 +27,7 @@ autom4te.cache/
 tarballs/
 test-results/
 Thumbs.db
+*.csproj
 
 # Mac bundle stuff
 *.dmg
