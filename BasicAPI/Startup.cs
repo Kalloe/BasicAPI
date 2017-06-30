@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace BasicAPI
 {
@@ -16,7 +17,15 @@ namespace BasicAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(o => {
+                if(o.SerializerSettings.ContractResolver != null)
+                {
+                    var castedResolver = o.SerializerSettings.ContractResolver 
+                                          as DefaultContractResolver;
+
+                    castedResolver.NamingStrategy = null;
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,9 +37,12 @@ namespace BasicAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            else{
+            else
+            {
                 app.UseExceptionHandler();
             }
+
+            app.UseStatusCodePages();
 
             app.UseMvc();
 
