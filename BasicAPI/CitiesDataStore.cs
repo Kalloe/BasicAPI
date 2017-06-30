@@ -16,19 +16,19 @@ namespace BasicAPI
             
                 new CityDto()
                 {
-                    id = 1,
+                    Id = 1,
                     Name = "New York City",
                     Description = "The one with the big park."
                 },
                 new CityDto()
                 {
-                    id = 2,
+                    Id = 2,
                     Name = "Antwerp",
                     Description = "The one with the cathedral that was never really finished."
                 },
                 new CityDto()
                 {
-                    id = 3,
+                    Id = 3,
                     Name = "Paris",
                     Description = "The one with the big tower."
                 }
