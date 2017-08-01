@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,6 +54,8 @@ namespace BasicAPI
 #endif
             var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
             services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +77,13 @@ namespace BasicAPI
             cityInfoContext.EnsureSeedDataForContext();
 
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(cfg => 
+            {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDto>();
+                cfg.CreateMap<Entities.City, Models.CityDto>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDto>();
+            });
 
             app.UseMvc();
 
