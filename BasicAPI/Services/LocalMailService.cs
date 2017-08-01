@@ -5,8 +5,8 @@ namespace BasicAPI.Services
 {
     public class LocalMailService : IMailService
     {
-        private string _mailTo = "admin@mycompany.com";
-        private string _mailFrom = "noreply@mycompany.com";
+        private string _mailTo = Startup.Configuration["mailSettings:mailToAddress"];
+        private string _mailFrom = Startup.Configuration["mailSettings:mailFromAddress"];
 
         public void Send(string subject, string message)
         {
