@@ -27,4 +27,7 @@
   <ItemGroup>
     <None Remove="appSetting.Production.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appSetting.Production.json" />
+  </ItemGroup>
 </Project>
